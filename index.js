@@ -25,7 +25,9 @@ const inventory = [
  * @param {Item[]} items - array of items
  */
 function logNames(items) {
+  //iterates over each item in the 'items' array
   items.forEach((item) => {
+    //Logs the 'name' property of the current item to the console
     console.log(item.name);
   });
 }
@@ -34,8 +36,14 @@ function logNames(items) {
  * @param {Item[]} items - array of items
  * @returns {string[]} an array of item names in all uppercase
  */
-function getUppercaseNames(items) {
-  return items.map((item) => item.name.toUpperCase());
+function getUpperCaseNames(items) {
+  return items.map((item) => items.name.toUpperCase());
+  /**
+   * .map() loops throught each item in the array
+   * item.name accesses the name property of each item
+   * .upperCase() converts the name to uppercase
+   * .map() returns a new array with all names in uppercase
+   */
 }
 
 /**
@@ -43,8 +51,12 @@ function getUppercaseNames(items) {
  * @param {number} id - id of the item to find
  * @returns {Item} - the item in `items` with the given `id`
  */
+
 function getItemById(items, id) {
   return items.find((item) => item.id === id);
+  // .find() goes through each item in the 'items' array
+  // If it fins an item where item.id matches the given 'id', it will return taht item
+  // If not match is found, it returns 'undefined'
 }
 
 /**
@@ -53,9 +65,15 @@ function getItemById(items, id) {
  * @returns {number} the price of the item named `name` if found
  */
 function getItemPriceByName(items, name) {
+  //Loops through each item in the array
   for (const item of items) {
-    if (item.name === name) return item.price;
+    //Checks if the current item's name matches the one we're looking for
+    if (item.name === name) {
+      // If we find a match, return the price of the item
+      return item.price;
+    }
   }
+  //If no items witht the matching name is found, return undefined
 }
 
 /**
@@ -63,7 +81,8 @@ function getItemPriceByName(items, name) {
  * @param {string} category
  * @returns {Item[]} array of items that belong to the given `category`
  */
-function getItemsByCategory(items, category) {
+function getItemsByCategory(items) {
+  // Use the 'filter' method to create a new array with only items that match the given category
   return items.filter((item) => item.category === category);
 }
 
@@ -73,6 +92,10 @@ function getItemsByCategory(items, category) {
  */
 function countItems(items) {
   return items.reduce((total, item) => total + item.quantity, 0);
+  // .reduce() iterates over the 'items' array and accumulates the total quanity
+  // 'total' starts at 0 (the initial value)
+  // On each iteration, 'item.quantity' is added to 'total'.
+  // Finally, it returns the total sum of all 'quantity' values.
 }
 
 /**
@@ -81,7 +104,30 @@ function countItems(items) {
  */
 function getTotalPrice(items) {
   return items.reduce((total, item) => total + item.quantity * item.price, 0);
+  // reduce() iterates over the 'items' array and accumulates the total cost
+  // 'total' starts at 0 (the initial value)
+  //On each iteration
+  //'item.quantity * item.price' calculates the cost for the current items
+  // this cost is added to 'total' updating the sum
+  //Finally, it returns the total cost of all items
 }
+
+/**
+ * DEFINITIONS
+ * map() method creates a new array
+ * filter() method creates a new array containing only elements that satisfy a given condition
+ * find() method returns the first element in an array that matches a given condition
+ * reduce() method processes each element in an array and reduces it to a single value
+ * forEach() method executes a provided function once for each element in an array. Unlike map() donesnt provide a new array
+ *
+ * USE return when you want to store the result in a variable or use the result somewhere else in your code
+ * for example in map(), filter(), reduce()
+ *
+ * USE console.log() when you want to display info to console, when debugging and need to check values
+ *
+ * map() and filter() creates a new array
+ * find() reduce() and forEach() do not create new arrays
+ */
 
 // === READ BUT DO NOT CHANGE THE CODE BELOW ===
 
